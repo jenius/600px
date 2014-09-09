@@ -1,9 +1,9 @@
 should = require 'should'
 config = require './config'
-Photos = require '../lib/photos'
+API = require '../lib'
 
 describe 'Testing GET photos:', ->
-  photos = new Photos(config.secrets.consumer_key)
+  photos = (new API(consumer_key: config.secrets.consumer_key)).photos
   user_id = config.secrets.user_id
   user_name = config.secrets.user_name
 

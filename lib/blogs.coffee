@@ -1,9 +1,6 @@
-Request = require './request'
-
 class Blogs
 
-  constructor: (consumer_key) ->
-    @request = new Request(consumer_key)
+  constructor: (@request) ->
 
   getById: (id, params = {}) ->
     @request.get("blogs/#{id}", params)

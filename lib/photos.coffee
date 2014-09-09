@@ -1,9 +1,6 @@
-Request = require './request'
-
 class Photos
 
-  constructor: (consumer_key) ->
-    @request = new Request(consumer_key)
+  constructor: (@request) ->
 
   getById: (photo_id, params = {}) ->
     @request.get("photos/#{photo_id}", params)

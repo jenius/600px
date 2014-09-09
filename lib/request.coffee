@@ -4,9 +4,10 @@ W     = require 'when'
 
 class Request
 
-  constructor: (@consumer_key) ->
+  constructor: (opts) ->
     @pathname = '/v1/'
     @host = 'api.500px.com'
+    @consumer_key = opts.consumer_key
 
   get: (path, params) ->
     deferred = W.defer()

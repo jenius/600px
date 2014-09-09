@@ -1,9 +1,6 @@
-Request = require './request'
-
 class Users
 
-  constructor: (consumer_key) ->
-    @request = new Request(consumer_key)
+  constructor: (@request) ->
 
   getById: (id, params = {}) ->
     params.id = id

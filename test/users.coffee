@@ -1,9 +1,9 @@
 should = require 'should'
 config = require './config'
-Users  = require '../lib/users'
+API  = require '../lib'
 
 describe 'Testing GET users:', ->
-  users = new Users(config.secrets.consumer_key)
+  users = (new API(consumer_key: config.secrets.consumer_key)).users
   user_id = config.secrets.user_id
   user_name = config.secrets.user_name
   user_email = config.secrets.user_email

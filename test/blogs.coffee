@@ -1,9 +1,9 @@
 should = require 'should'
 config = require './config'
-Blogs  = require '../lib/blogs'
+API  = require '../lib'
 
 describe 'Testing GET blogs:', ->
-  blogs = new Blogs(config.secrets.consumer_key)
+  blogs = (new API(consumer_key: config.secrets.consumer_key)).blogs
   user_id = config.secrets.user_id
   user_name = config.secrets.user_name
 
