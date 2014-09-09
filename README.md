@@ -21,7 +21,7 @@ Include the module in your project and initialize it. **Important**: Use the con
 
 ```javascript
 var API500px = require('500px'),
-    api500px = new API500px(consumer_key);
+    api500px = new API500px({ consumer_key: 'xxx' });
 ```
 
 Now you are ready to make some calls to the 500px.com API!
