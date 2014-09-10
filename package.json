@@ -36,6 +36,7 @@
     }
   ],
   "dependencies": {
+    "rest": "1.x",
     "when": "3.x"
   }
 }
