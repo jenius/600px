@@ -2,6 +2,9 @@ class Users
 
   constructor: (@request) ->
 
+  get: (params = {}) ->
+    @request.get('users', params)
+
   getById: (id, params = {}) ->
     params.id = id
     @request.get('users/show', params)

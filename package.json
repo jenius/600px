@@ -36,6 +36,7 @@
     }
   ],
   "dependencies": {
+    "node-uuid": "1.x",
     "rest": "1.x",
     "when": "3.x"
   }

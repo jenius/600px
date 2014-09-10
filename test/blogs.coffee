@@ -3,7 +3,7 @@ config = require './config'
 API  = require '../lib'
 
 describe 'Testing GET blogs:', ->
-  blogs = (new API(consumer_key: config.consumer_key)).blogs
+  blogs = (new API(config)).blogs
   user_id = config.user_id
   user_name = config.user_name
 

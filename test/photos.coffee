@@ -3,7 +3,7 @@ config = require './config'
 API = require '../lib'
 
 describe 'Testing GET photos:', ->
-  photos = (new API(consumer_key: config.consumer_key)).photos
+  photos = (new API(config)).photos
   user_id = config.user_id
   user_name = config.user_name
 

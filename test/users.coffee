@@ -3,10 +3,16 @@ config = require './config'
 API  = require '../lib'
 
 describe 'Testing GET users:', ->
-  users = (new API(consumer_key: config.consumer_key)).users
+  users = (new API(config)).users
   user_id = config.user_id
   user_name = config.user_name
   user_email = config.user_email
+
+  it '#get() should return the authorized user\'s data', (done) ->
+    users.get().then (res) ->
+      console.log res
+      done()
+    .catch(console.error)
 
   it '#getById() should return json with the user data', (done) ->
     users.getById(user_id).then (res) ->
