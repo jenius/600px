@@ -3,9 +3,9 @@ config = require './config'
 API = require '../lib'
 
 describe 'Testing GET photos:', ->
-  photos = (new API(consumer_key: config.secrets.consumer_key)).photos
-  user_id = config.secrets.user_id
-  user_name = config.secrets.user_name
+  photos = (new API(consumer_key: config.consumer_key)).photos
+  user_id = config.user_id
+  user_name = config.user_name
 
   it '#getById() should return a json with the photo data', (done) ->
     photos.getById(3086230).then (res) ->

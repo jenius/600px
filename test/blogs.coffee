@@ -3,9 +3,9 @@ config = require './config'
 API  = require '../lib'
 
 describe 'Testing GET blogs:', ->
-  blogs = (new API(consumer_key: config.secrets.consumer_key)).blogs
-  user_id = config.secrets.user_id
-  user_name = config.secrets.user_name
+  blogs = (new API(consumer_key: config.consumer_key)).blogs
+  user_id = config.user_id
+  user_name = config.user_name
 
   it '#getById() should return a json with the blog data', (done) ->
     blogs.getById(27105).then (res) ->
