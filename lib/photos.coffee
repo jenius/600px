@@ -2,8 +2,17 @@ class Photos
 
   constructor: (@request) ->
 
-  getById: (photo_id, params = {}) ->
-    @request.get("photos/#{photo_id}", params)
+  getById: (id, params = {}) ->
+    @request.get("photos/#{id}", params)
+
+  getComments: (id, params = {}) ->
+    @request.get("photos/#{id}/comments", params)
+
+  getFavorites: (id, params = {}) ->
+    @request.get("photos/#{id}/favorites", params)
+
+  getVotes: (id, params = {}) ->
+    @request.get("photos/#{id}/votes", params)
 
   getByUsername: (username, params = {}) ->
     params.feature = 'user'

@@ -12,6 +12,21 @@ describe 'Testing GET photos:', ->
       res.should.have.property('photo')
       done()
 
+  it '#getComments() should return a json with the photo\'s comment data', (done) ->
+    photos.getComments(3086230).then (res) ->
+      res.should.have.property('comments')
+      done()
+
+  it '#getFavorites() should return a json with the photo\'s favorites', (done) ->
+    photos.getFavorites(3086230).then (res) ->
+      res.should.have.property('users')
+      done()
+
+  it '#getVotes() should return a json with the photo\'s votes', (done) ->
+    photos.getVotes(3086230).then (res) ->
+      res.should.have.property('users')
+      done()
+
   it '#getByUsername() should return a json with photos', (done) ->
     photos.getByUsername(user_name, rpp: 7).then (res) ->
       res.should.have.property('photos')

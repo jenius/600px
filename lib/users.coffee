@@ -14,7 +14,14 @@ class Users
     params.email = email
     @request.get('users/show', params)
 
-  getFriendsById: (id, params = {}) ->
+  getFriends: (id, params = {}) ->
     @request.get("users/#{id}/friends", params)
+
+  getFollowers: (id, params = {}) ->
+    @request.get("users/#{id}/followers", params)
+
+  search: (term, params = {}) ->
+    params.term = term
+    @request.get("users/search", params)
 
 module.exports = Users
