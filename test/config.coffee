@@ -1,9 +1,0 @@
-module.exports =
-  consumer_key: 'pf8WZxMnKsfRNRhAplPuWwEpgqkKbWaNKJ34nCHU'
-  consumer_secret: 'xqidNOdomG661SedvytfgWmaT5mj6fZs6WscBic5'
-  token: 'l3kHyOQukm725pVioxRNCEoM3wWMkT1qzYoReQKo'
-  token_secret: 'DnWzg6pijInuZW73pZFlEVjQllgS6nDnaNGxqD0q'
-  user_id: '8641247'
-  user_name: 'jescalan'
-  user_email: 'hello@jenius.me'
-  collection_id: '1499013'

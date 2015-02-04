@@ -1,6 +1,3 @@
-config = require './config'
-API = require '../lib'
-
 describe 'photos', ->
   Photos = (new API(config)).photos
 

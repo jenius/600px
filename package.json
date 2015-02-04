@@ -9,8 +9,9 @@
   "repository": "git://github.com/jenius/node-500px.git",
   "main": "lib",
   "scripts": {
+    "test": "npm run lint && mocha",
     "lint": "find lib/ -name '*.coffee' | xargs coffeelint",
-    "test": "mocha"
+    "coverage": "make build; istanbul cover _mocha --report html -- -R spec && open coverage/index.html && make unbuild"
   },
   "devDependencies": {
     "chai": "1.x",
@@ -18,6 +19,7 @@
     "coffee-script": "1.9.x",
     "coffeelint": "1.x",
     "istanbul": "0.3.x",
+    "mocha-lcov-reporter": "0.0.1",
     "mocha": "1.x"
   },
   "dependencies": {

@@ -14,13 +14,15 @@ class Request
     @api = new Purest(provider: '500px')
 
   get: (path, params) -> @req('get', path, params)
-  put: (path, params) -> @req('put', path, params)
 
   req: (method, path, params) ->
     d = W.defer()
-    @api[method] path, generate_headers.call(@, params), (err, res, body) ->
-      if err then d.reject(err)
-      d.resolve(body)
+    try
+      @api[method] path, generate_headers.call(@, params), (err, res, body) ->
+        if err then d.reject(err)
+        d.resolve(body)
+    catch err
+      d.reject(err)
     return d.promise
 
   # private

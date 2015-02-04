@@ -1,9 +1,9 @@
 600px
 =====
 
-[![NPM version](https://badge.fury.io/js/500px.png)](http://badge.fury.io/js/500px)
+[![npm](http://img.shields.io/npm/v/600px.svg?style=flat)](https://badge.fury.io/js/600px) [![tests](http://img.shields.io/travis/jenius/600px/master.svg?style=flat)](https://travis-ci.org/jenius/600px) [![dependencies](http://img.shields.io/gemnasium/jenius/600px.svg?style=flat)](https://gemnasium.com/jenius/600px)
 
-A [500px.com](http://500px.com) wrapper that does a little more than the existing `500px` node module :wink:. Wraps the [500px API](http://developer.500px.com/), exposing a clean, well-tested promise-based interface with support for authenticated requests.
+A [500px.com](http://500px.com) wrapper that does a little more than the existing `500px` node module :wink:. Wraps the [500px API](http://developer.500px.com/), exposing a clean, well-tested, promise-based interface with support for authenticated requests.
 
 ### Installation
 

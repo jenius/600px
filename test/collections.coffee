@@ -1,6 +1,3 @@
-config = require './config'
-API  = require '..'
-
 describe 'collections', ->
   Collections = (new API(config)).collections
 

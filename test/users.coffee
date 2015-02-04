@@ -1,6 +1,3 @@
-config = require './config'
-API  = require '..'
-
 describe 'users', ->
   Users = (new API(config)).users
 
