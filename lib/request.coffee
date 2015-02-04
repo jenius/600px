@@ -1,32 +1,38 @@
-https = require 'https'
-url   = require 'url'
-W     = require 'when'
+https  = require 'https'
+url    = require 'url'
+uuid   = require 'node-uuid'
+Purest = require 'purest'
+W      = require 'when'
 
 class Request
 
-  constructor: (@consumer_key) ->
-    @pathname = '/v1/'
-    @host = 'api.500px.com'
+  constructor: (opts) ->
+    @consumer_key = opts.consumer_key
+    @consumer_secret = opts.consumer_secret
+    @token = opts.token
+    @token_secret = opts.token_secret
+    @api = new Purest(provider: '500px')
 
-  get: (path, params) ->
-    deferred = W.defer()
-    params.consumer_key = @consumer_key
+  get: (path, params) -> @req('get', path, params)
+  put: (path, params) -> @req('put', path, params)
 
-    req_url = url.format
-      protocol: 'https'
-      host: @host
-      pathname: "#{@pathname}/#{path}"
-      query: params
+  req: (method, path, params) ->
+    d = W.defer()
+    @api[method] path, generate_headers.call(@, params), (err, res, body) ->
+      if err then d.reject(err)
+      d.resolve(body)
+    return d.promise
 
-    https.get req_url, (res) ->
-      if res.statusCode and res.statusCode is 200
-        chunks = ''
-        res.on('data', (data) -> chunks += data)
-        res.on('end', -> deferred.resolve(JSON.parse(chunks)))
-      else
-        deferred.reject(new Error(res))
-    .on('error', deferred.reject.bind(deferred))
+  # private
 
-    return deferred.promise
+  generate_headers = (params) ->
+    res = {}
+    res.json = params
+    res.oauth =
+      consumer_key: @consumer_key
+      consumer_secret: @consumer_secret
+      token: @token
+      token_secret: @token_secret
+    res
 
 module.exports = Request

@@ -1,9 +1,9 @@
-Request = require './request'
-
 class Users
 
-  constructor: (consumer_key) ->
-    @request = new Request(consumer_key)
+  constructor: (@request) ->
+
+  get: (params = {}) ->
+    @request.get('users', params)
 
   getById: (id, params = {}) ->
     params.id = id
@@ -17,7 +17,14 @@ class Users
     params.email = email
     @request.get('users/show', params)
 
-  getFriendsById: (id, params = {}) ->
+  getFriends: (id, params = {}) ->
     @request.get("users/#{id}/friends", params)
+
+  getFollowers: (id, params = {}) ->
+    @request.get("users/#{id}/followers", params)
+
+  search: (term, params = {}) ->
+    params.term = term
+    @request.get("users/search", params)
 
 module.exports = Users
