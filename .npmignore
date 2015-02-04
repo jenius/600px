@@ -1,3 +1,4 @@
-*.log
 test
 Makefile
+.editorconfig
+.travis.yml
