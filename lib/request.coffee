@@ -1,58 +1,38 @@
 https  = require 'https'
 url    = require 'url'
 uuid   = require 'node-uuid'
-rest   = require 'rest'
-mime   = require 'rest/interceptor/mime'
-prefix = require 'rest/interceptor/pathPrefix'
-error  = require 'rest/interceptor/errorCode'
+Purest = require 'purest'
+W      = require 'when'
 
 class Request
 
   constructor: (opts) ->
     @consumer_key = opts.consumer_key
+    @consumer_secret = opts.consumer_secret
     @token = opts.token
+    @token_secret = opts.token_secret
+    @api = new Purest(provider: '500px')
 
-    base_path = url.format
-      protocol: 'https'
-      host: 'api.500px.com'
-      pathname: 'v1'
+  get: (path, params) -> @req('get', path, params)
+  put: (path, params) -> @req('put', path, params)
 
-    @request = rest.wrap(mime)
-                   .wrap(prefix, prefix: base_path)
-                   .wrap(error)
+  req: (method, path, params) ->
+    d = W.defer()
+    @api[method] path, generate_headers.call(@, params), (err, res, body) ->
+      if err then d.reject(err)
+      d.resolve(body)
+    return d.promise
 
-  get: (path, params) ->
-    if not @token then params.consumer_key = @consumer_key
-    req_url = generate_url.call(@, path, params)
-    headers = if @token then generate_headers.call(@) else {}
-
-    @request(path: req_url, headers: headers)
-      # .tap(console.log)
-      .then((res) -> res.entity)
-
-  put: (path, params) ->
-    req_url = generate_url.call(@, path)
-    headers = generate_headers.call(@)
-
-    @request(path: req_url, method: 'PUT', entity: params, headers: headers)
-      .then((res) -> res.entity)
-
-  #
   # private
-  #
 
-  generate_url = (path, params) ->
-    "#{path}/#{url.format(query: params)}"
-
-  generate_headers = ->
-    params = [
-      "oauth_consumer_key=\"#{@consumer_key}\"",
-      "oauth_signature_method=\"HMAC-SHA1\"",
-      "oauth_timestamp=\"#{new Date().getTime()}\"",
-      "oauth_nonce=\"#{uuid.v1()}\"",
-      "oauth_version=\"1.0\""
-      "oauth_token=\"#{@token}\""
-    ]
-    Authorization: "OAuth #{params.join(',')}"
+  generate_headers = (params) ->
+    res = {}
+    res.json = params
+    res.oauth =
+      consumer_key: @consumer_key
+      consumer_secret: @consumer_secret
+      token: @token
+      token_secret: @token_secret
+    res
 
 module.exports = Request

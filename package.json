@@ -1,43 +1,28 @@
 {
   "name": "500px",
   "description": "A wrapper for the 500px.com API",
+  "version": "0.0.0",
   "keywords": [
     "api",
     "500px"
   ],
-  "version": "0.4.0",
-  "homepage": "http://ro-ka.github.com/node-500px/",
-  "repository": "git://github.com/ro-ka/node-500px.git",
-  "author": {
-    "name": "Robert Katzki",
-    "email": "robert@katzki.de",
-    "url": "http://katzki.de/"
-  },
+  "repository": "git://github.com/jenius/node-500px.git",
   "main": "lib",
   "scripts": {
     "lint": "find lib/ -name '*.coffee' | xargs coffeelint",
-    "pretest": "npm run lint",
-    "test": "make build && ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha test",
-    "posttest": "./node_modules/.bin/istanbul check-coverage && rm -rf coverage && make unbuild",
-    "prepublish": "npm test && npm prune"
+    "test": "mocha"
   },
   "devDependencies": {
-    "coffee-script": "^1.8.0",
-    "coffeelint": "^1.6.0",
-    "istanbul": "^0.3.0",
-    "jshint": "^2.5.5",
-    "mocha": "^1.21.4",
-    "should": "^4.0.4"
+    "chai": "1.x",
+    "chai-as-promised": "4.x",
+    "coffee-script": "1.9.x",
+    "coffeelint": "1.x",
+    "istanbul": "0.3.x",
+    "mocha": "1.x"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/ro-ka/node-500px/raw/master/LICENSE"
-    }
-  ],
   "dependencies": {
     "node-uuid": "1.x",
-    "rest": "1.x",
+    "purest": "1.x",
     "when": "3.x"
   }
 }

@@ -1,7 +1,8 @@
-Photos  = require './photos'
-Users   = require './users'
-Blogs   = require './blogs'
-Request = require './request'
+Photos      = require './photos'
+Users       = require './users'
+Blogs       = require './blogs'
+Collections = require './collections'
+Request     = require './request'
 
 class API
 
@@ -10,5 +11,6 @@ class API
     @photos = new Photos(request)
     @users = new Users(request)
     @blogs = new Blogs(request)
+    @collections = new Collections(request)
 
 module.exports = API

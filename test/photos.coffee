@@ -1,110 +1,107 @@
-should = require 'should'
 config = require './config'
 API = require '../lib'
 
-describe 'Testing GET photos:', ->
-  photos = (new API(config)).photos
-  user_id = config.user_id
-  user_name = config.user_name
+describe 'photos', ->
+  Photos = (new API(config)).photos
 
-  it '#getById() should return a json with the photo data', (done) ->
-    photos.getById(3086230).then (res) ->
+  it 'getById() should return a json with the photo data', ->
+    Photos.getById(3086230).then (res) ->
       res.should.have.property('photo')
-      done()
+    .should.be.fulfilled
 
-  it '#getComments() should return a json with the photo\'s comment data', (done) ->
-    photos.getComments(3086230).then (res) ->
+  it 'getComments() should return a json with the photo\'s comment data', ->
+    Photos.getComments(3086230).then (res) ->
       res.should.have.property('comments')
-      done()
+    .should.be.fulfilled
 
-  it '#getFavorites() should return a json with the photo\'s favorites', (done) ->
-    photos.getFavorites(3086230).then (res) ->
+  it 'getFavorites() should return a json with the photo\'s favorites', ->
+    Photos.getFavorites(3086230).then (res) ->
       res.should.have.property('users')
-      done()
+    .should.be.fulfilled
 
-  it '#getVotes() should return a json with the photo\'s votes', (done) ->
-    photos.getVotes(3086230).then (res) ->
+  it 'getVotes() should return a json with the photo\'s votes', ->
+    Photos.getVotes(3086230).then (res) ->
       res.should.have.property('users')
-      done()
+    .should.be.fulfilled
 
-  it '#getByUsername() should return a json with photos', (done) ->
-    photos.getByUsername(user_name, rpp: 7).then (res) ->
+  it 'getByUsername() should return a json with photos', ->
+    Photos.getByUsername(config.user_name, rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getByUserId() should return a json with photos', (done) ->
-    photos.getByUserId(user_id, rpp: 7).then (res) ->
+  it 'getByUserId() should return a json with photos', ->
+    Photos.getByUserId(config.user_id, rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getFavoritesByUsername() should return a json with photos', (done) ->
-    photos.getFavoritesByUsername(user_name, rpp: 7).then (res) ->
+  it 'getFavoritesByUsername() should return a json with photos', ->
+    Photos.getFavoritesByUsername(config.user_name, rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getFavoritesByUserId() should return a json with photos', (done) ->
-    photos.getFavoritesByUserId(user_id, rpp: 7).then (res) ->
+  it 'getFavoritesByUserId() should return a json with photos', ->
+    Photos.getFavoritesByUserId(config.user_id, rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getFriendsByUsername() should return a json with photos', (done) ->
-    photos.getFriendsByUsername(user_name, rpp: 7).then (res) ->
+  it 'getFriendsByUsername() should return a json with photos', ->
+    Photos.getFriendsByUsername(config.user_name, rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getFriendsByUserId() should return a json with photos', (done) ->
-    photos.getFriendsByUserId(user_id, rpp: 7).then (res) ->
+  it 'getFriendsByUserId() should return a json with photos', ->
+    Photos.getFriendsByUserId(config.user_id, rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getPopular() should return a json with photos', (done) ->
-    photos.getPopular(rpp: 7).then (res) ->
+  it 'getPopular() should return a json with photos', ->
+    Photos.getPopular(rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getUpcoming() should return a json with photos', (done) ->
-    photos.getUpcoming(rpp: 7).then (res) ->
+  it 'getUpcoming() should return a json with photos', ->
+    Photos.getUpcoming(rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getEditorsChoice() should return a json with photos', (done) ->
-    photos.getEditorsChoice(rpp: 7).then (res) ->
+  it 'getEditorsChoice() should return a json with photos', ->
+    Photos.getEditorsChoice(rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getFreshToday() should return a json with photos', (done) ->
-    photos.getFreshToday(rpp: 7).then (res) ->
+  it 'getFreshToday() should return a json with photos', ->
+    Photos.getFreshToday(rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getFreshYesterday() should return a json with photos', (done) ->
-    photos.getFreshYesterday(rpp: 7).then (res) ->
+  it 'getFreshYesterday() should return a json with photos', ->
+    Photos.getFreshYesterday(rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#getFreshWeek() should return a json with photos', (done) ->
-    photos.getFreshWeek().then (res) ->
+  it 'getFreshWeek() should return a json with photos', ->
+    Photos.getFreshWeek().then (res) ->
       res.should.have.property('photos')
-      done()
+    .should.be.fulfilled
 
-  it '#searchByTag() should return a json with photos', (done) ->
-    photos.searchByTag('hamburg', rpp: 7).then (res) ->
+  it 'searchByTag() should return a json with photos', ->
+    Photos.searchByTag('hamburg', rpp: 7).then (res) ->
       res.should.have.property('photos')
       res.photos.should.have.lengthOf(7)
-      done()
+    .should.be.fulfilled
 
-  it '#searchByTerm() should return a json with photos', (done) ->
-    photos.searchByTerm('hamburg').then (res) ->
+  it 'searchByTerm() should return a json with photos', ->
+    Photos.searchByTerm('hamburg').then (res) ->
       res.should.have.property('photos')
-      done()
+    .should.be.fulfilled
